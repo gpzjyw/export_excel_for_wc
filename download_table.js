@@ -1,11 +1,13 @@
 
 $(document).ready(function() {
-  const tableFilterNode = $('#pane-learner .table-filter form>div');
-
-  // 添加导出excel按钮
-  tableFilterNode.last().append(
-    $('<button style="float: right;">导出excel</button>').on({ click: onClick})
-  );
+  setTimeout(function() {
+    const tableFilterNode = $('#pane-learner .table-filter form>div');
+  
+    // 添加导出excel按钮
+    tableFilterNode.last().append(
+      $('<button style="float: right;">导出excel</button>').on({ click: onClick})
+    );
+  }, 500);
 });
 
 // 点击事件
@@ -26,7 +28,19 @@ function getData() {
       totalScore: rowVal[5].innerText,
     });
   }
-  return dataSource;
+  return arrRemoveRepeat(dataSource, 'name');
+}
+
+// 数组去重
+function arrRemoveRepeat(arr, key) {
+  const obj = {};
+  return arr.filter(function(item) {
+    if (obj[item[key]]) {
+      return false;
+    }
+    obj[item[key]] = true;
+    return true;
+  });
 }
 
 // 制作并导出excel 

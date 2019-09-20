@@ -7,11 +7,15 @@ $(document).ready(function() {
     tableFilterNode.last().append(
       $('<button style="float: right;">导出excel</button>').on({ click: onClick})
     );
+    console.log('the export button has been added');
   }, 500);
 });
 
 // 点击事件
-function onClick() {
+function onClick(e) {
+  if (e) {
+    e.stopPropagation();
+  }
   const dataSource = getData();
   exportExcel(dataSource);
 }

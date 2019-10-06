@@ -5,7 +5,7 @@ $(document).ready(function() {
   
     // 添加导出excel按钮
     tableFilterNode.last().append(
-      $('<button style="float: right;">导出excel</button>').on({ click: onClick})
+      $('<button style="margin-left: 30px;">将当表格数据导出为excel</button>').on({ click: onClick})
     );
     console.log('the export button has been added');
   }, 500);
@@ -15,6 +15,7 @@ $(document).ready(function() {
 function onClick(e) {
   if (e) {
     e.stopPropagation();
+    e.preventDefault();
   }
   const dataSource = getData();
   exportExcel(dataSource);
